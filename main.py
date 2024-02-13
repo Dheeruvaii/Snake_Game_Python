@@ -37,8 +37,8 @@ pygame.display.set_caption('Dheeruvaii_Snake_Game')
 
 clock=pygame.time.Clock()
 
-snake_block=20
-snake_speed=15
+snake_block=10
+snake_speed= 10
 
 
 font_style = pygame.font.SysFont("bahnschrift", 25)
@@ -56,15 +56,15 @@ snake_icon = pygame.image.load("snake.png")  # Load snake icon image
 snake_icon = pygame.transform.scale(snake_icon, (snake_block, snake_block))  # Resize image to match snake block size
 
 
-# def my_snake(snake_block ,snake_list):
-#     for x in snake_list:
-#         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
+def my_snake(snake_block ,snake_list):
+    for x in snake_list:
+        pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
    
-def my_snake(snake_block, snake_list):
-    for x,y in snake_list:
-        # pygame.draw.rect(dis ,black, [x[0],x[1],snake_block,snake_block])
+# def my_snake(snake_block, snake_list):
+#     for x,y in snake_list:
+#         # pygame.draw.rect(dis ,black, [x[0],x[1],snake_block,snake_block])
         
-        dis.blit(snake_icon,(x,y))
+#         dis.blit(snake_icon,(x,y))
 
 
 
@@ -182,7 +182,7 @@ def gameloop():
         """
         x1 += x1_change
         y1 += y1_change
-        dis.fill(white)
+        dis.fill(blue)
         pygame.draw.rect(dis,green,[foodx,foody,snake_block,snake_block])
         # pygame.draw.rect(dis, black, [x1, y1, snake_block, snake_block])
         """rectangle object created on then screen"""
