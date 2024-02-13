@@ -47,15 +47,34 @@ def message(msg,color):
     """blit draws the  message  on the display """
 
 def gameloop():
-    game_over=False
-    game_close=False
+    """
+    This function represents the main game loop for the Snake game.
 
+    The game loop manages the game state, handles user input, updates the positions
+    of the snake and food, and renders the game graphics.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    """
+    game_over=False  
+    """Flag to indicate if the game is over"""
+    game_close=False  
+    """Flag to indicate if the game is in a "game over" state"""
+
+    """ Initialize the position of the snake's head at the center of the game screen"""
     x1= dis_width/2
     y1= dis_height/2
 
+
+    """Initialize the direction of the snake's movement"""
     x1_change = 0
     y1_change = 0
 
+
+    """Generate random positions for the food within the game screen boundaries"""
     foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
     foody = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
 
@@ -66,13 +85,13 @@ def gameloop():
             message("you Lost Press Q-Quit and C-play again ",red)
             pygame.display.update()
     
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key ==pygame.K_q:
-                    game_over=True
-                    game_close=False
-                if event.key == pygame.K_c:
-                    gameloop()
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key ==pygame.K_q:
+                        game_over=True
+                        game_close=False
+                    if event.key == pygame.K_c:
+                        gameloop()
 
         """this code block displays a message indicating that the player lost, 
         gives them options to either quit or play again, and waits for their input. 
@@ -101,8 +120,24 @@ def gameloop():
         """if x1 &amp;gt;= dis_width or x1 &amp;lt; 0 or y1 &amp;gt;= dis_height or y1 &amp;lt; 0:
                 Replace &amp;gt; with > and &amp;lt; with <. These symbols are used to compare values in Python, and Visual Studio Code should recognize them without issue."""
         if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
+            """
+            Check if the snake's head is out of bounds of the game screen.
+            If any of the following conditions are true, it indicates that the snake's head
+            has collided with the boundaries of the game screen:
+            - If x-coordinate of the snake's head (x1) is greater than or equal to the width of the game screen (dis_width).
+            - If x-coordinate of the snake's head (x1) is less than 0.
+            - If y-coordinate of the snake's head (y1) is greater than or equal to the height of the game screen (dis_height).
+            - If y-coordinate of the snake's head (y1) is less than 0."""
+
             game_over=True
-        """key press operations"""
+            """
+                If the snake's head goes out of bounds of the game screen, set the game_over flag to True.
+                This indicates that the game should be ended.
+                """
+            
+        """key press operations
+        Update the position of the snake's head based on the current direction of movement
+        """
         x1 += x1_change
         y1 += y1_change
         dis.fill(white)
