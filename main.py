@@ -37,7 +37,7 @@ pygame.display.set_caption('Dheeruvaii_Snake_Game')
 
 clock=pygame.time.Clock()
 
-snake_block=10
+snake_block=20
 snake_speed=15
 
 
@@ -46,7 +46,7 @@ score_font = pygame.font.SysFont("comicsansms", 35)
 
 def my_score(score):
     value=font_style.render("my score :" + str(score),True,yellow)
-    dis.blit(value, [0,0])
+    dis.blit(value, [0,10])
     """
     Blit (draw) the rendered text onto the game screen at the specified position [0, 0].
     This position represents the top-left corner of the screen.
@@ -55,10 +55,17 @@ def my_score(score):
 snake_icon = pygame.image.load("snake.png")  # Load snake icon image
 snake_icon = pygame.transform.scale(snake_icon, (snake_block, snake_block))  # Resize image to match snake block size
 
-def my_snake(snake_block ,snake_list):
+
+# def my_snake(snake_block ,snake_list):
+#     for x in snake_list:
+#         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
+   
+def my_snake(snake_block, snake_list):
     for x,y in snake_list:
         # pygame.draw.rect(dis ,black, [x[0],x[1],snake_block,snake_block])
+        
         dis.blit(snake_icon,(x,y))
+
 
 
         """Draw a rectangle representing each segment of the snake's body.
@@ -200,7 +207,7 @@ def gameloop():
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             length_of_snake += 1
-            # print("yummy")
+            print(my_score)
         clock.tick(snake_speed)
     pygame.quit()
     quit()
