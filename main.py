@@ -21,7 +21,7 @@ blue = (50, 153, 213)
 # x1_change = 0
 # y1_change = 0
 """
-foods created time pass into loop functions
+transfer this snake parameters into gameloop function
 
 """
 
@@ -45,8 +45,9 @@ font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("comicsansms", 35)
 
 def my_score(score):
-    value=font_style.render("my score :" + str(score),True,yellow)
-    dis.blit(value, [0,10])
+    value=font_style.render("my score :" + str(score),True,black)
+    text=value.get_rect(center=(dis_width/2 ,100))
+    dis.blit(value, text)
     """
     Blit (draw) the rendered text onto the game screen at the specified position [0, 0].
     This position represents the top-left corner of the screen.
