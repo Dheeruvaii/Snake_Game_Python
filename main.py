@@ -38,15 +38,29 @@ pygame.display.set_caption('Dheeruvaii_Snake_Game')
 clock=pygame.time.Clock()
 
 snake_block=10
-snake_speed=30
+snake_speed=15
 
 
 font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("comicsansms", 35)
 
+def my_score(score):
+    value=font_style.render("my score :" + str(score),True,yellow)
+    dis.blit(value, [0,0])
+    """
+    Blit (draw) the rendered text onto the game screen at the specified position [0, 0].
+    This position represents the top-left corner of the screen.
+    """
+
 def my_snake(snake_block ,snake_list):
     for x in snake_list:
         pygame.draw.rect(dis ,black, [x[0],x[1],snake_block,snake_block])
+
+
+        """Draw a rectangle representing each segment of the snake's body.
+        The position and size of the rectangle are determined by the corresponding values in the snake_list.
+        The color of the rectangle is black, and its size is determined by snake_block.
+        """
 
 """for game over message"""
 def message(msg,color):
@@ -90,12 +104,19 @@ def gameloop():
 
 
     while not game_over:
+        """
+        Main game loop.
+        """
         while game_close == True:
+            
             dis.fill(blue)
             message("you Lost Press Q-Quit and C-play again ",red)
             pygame.display.update()
     
             for event in pygame.event.get():
+                """
+                Iterate through all the events that have occurred since the last call to pygame.event.get().
+            """
                 if event.type == pygame.KEYDOWN:
                     if event.key ==pygame.K_q:
                         game_over=True
@@ -166,6 +187,7 @@ def gameloop():
                 game_close=True
 
         my_snake(snake_block,snake_list)
+        my_score(length_of_snake -1)
         pygame.display.update()
 
 
