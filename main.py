@@ -52,9 +52,13 @@ def my_score(score):
     This position represents the top-left corner of the screen.
     """
 
+snake_icon = pygame.image.load("snake.png")  # Load snake icon image
+snake_icon = pygame.transform.scale(snake_icon, (snake_block, snake_block))  # Resize image to match snake block size
+
 def my_snake(snake_block ,snake_list):
-    for x in snake_list:
-        pygame.draw.rect(dis ,black, [x[0],x[1],snake_block,snake_block])
+    for x,y in snake_list:
+        # pygame.draw.rect(dis ,black, [x[0],x[1],snake_block,snake_block])
+        dis.blit(snake_icon,(x,y))
 
 
         """Draw a rectangle representing each segment of the snake's body.
